@@ -1,0 +1,148 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{TowerSemiWebsite}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=5d755907a5e2696e89d86011f60088e5}{%
+           family={{Tower Semiconductor}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {https://towersemi.com/}%
+      }
+      \list{organization}{1}{%
+        {Official website of Tower Semiconductor}%
+      }
+      \strng{namehash}{5d755907a5e2696e89d86011f60088e5}
+      \strng{fullhash}{5d755907a5e2696e89d86011f60088e5}
+      \strng{fullhashraw}{5d755907a5e2696e89d86011f60088e5}
+      \strng{bibnamehash}{5d755907a5e2696e89d86011f60088e5}
+      \strng{authorbibnamehash}{5d755907a5e2696e89d86011f60088e5}
+      \strng{authornamehash}{5d755907a5e2696e89d86011f60088e5}
+      \strng{authorfullhash}{5d755907a5e2696e89d86011f60088e5}
+      \strng{authorfullhashraw}{5d755907a5e2696e89d86011f60088e5}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Official website of Tower Semiconductor}
+      \field{note}{Accessed April 2025}
+      \field{title}{{https://towersemi.com/}}
+      \verb{urlraw}
+      \verb https://towersemi.com/technology/cmos_image_sensor/
+      \endverb
+      \verb{url}
+      \verb https://towersemi.com/technology/cmos_image_sensor/
+      \endverb
+    \endentry
+    \entry{DesyTestbeamPaper}{article}{}{}
+      \name{author}{11}{}{%
+        {{hash=71386799bb2da346027b4bbfac7e49d7}{%
+           family={Diener},
+           familyi={D\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=7d5fb8bd9389e843fcf358234215a888}{%
+           family={Dreyling-Eschweiler},
+           familyi={D\bibinithyphendelim E\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3a623ae7e5832e7dcb220c60e1155635}{%
+           family={Ehrlichmann},
+           familyi={E\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+        {{hash=2b654cf11825df44737b462821ac8ed3}{%
+           family={Gregor},
+           familyi={G\bibinitperiod},
+           given={I.M.},
+           giveni={I\bibinitperiod}}}%
+        {{hash=8b3047fed1b42e6c37ea5b1c0147563b}{%
+           family={Kötz},
+           familyi={K\bibinitperiod},
+           given={U.},
+           giveni={U\bibinitperiod}}}%
+        {{hash=641febb0f3e541bb727c9573fc409feb}{%
+           family={Krämer},
+           familyi={K\bibinitperiod},
+           given={U.},
+           giveni={U\bibinitperiod}}}%
+        {{hash=1465436a3b43d3ae97fdb00baa8689a0}{%
+           family={Meyners},
+           familyi={M\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+        {{hash=90767397164fe275c38b653d195f8852}{%
+           family={Potylitsina-Kube},
+           familyi={P\bibinithyphendelim K\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+        {{hash=3321666b906fc4b2cfe6cf125992ccfa}{%
+           family={Schütz},
+           familyi={S\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=742fe63b0a7bbe381b7e5c8bf0d994a0}{%
+           family={Schütze},
+           familyi={S\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=a391da584e060c18b7da6cac3d10f70a}{%
+           family={Stanitzki},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{8e9c773ffd8348b934f724e2a0502106}
+      \strng{fullhash}{48af2f8dfa48b35f0c9543f9589668ad}
+      \strng{fullhashraw}{48af2f8dfa48b35f0c9543f9589668ad}
+      \strng{bibnamehash}{8e9c773ffd8348b934f724e2a0502106}
+      \strng{authorbibnamehash}{8e9c773ffd8348b934f724e2a0502106}
+      \strng{authornamehash}{8e9c773ffd8348b934f724e2a0502106}
+      \strng{authorfullhash}{48af2f8dfa48b35f0c9543f9589668ad}
+      \strng{authorfullhashraw}{48af2f8dfa48b35f0c9543f9589668ad}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{DESY Hamburg operates a test beam facility with three independent beam lines at the DESY II synchrotron. It is world-wide one of very few facilities providing test beams in the GeV range. To this end, it offers electron/positron beams with user-selectable momenta from 1-6GeV/c. The available infrastructure for the users is unique, including a high field solenoidal magnet and permanently installed high-precision pixel beam telescopes. This publication gives a detailed description of the facility, the available infrastructure, and the simulated and measured performance.}
+      \field{issn}{0168-9002}
+      \field{journaltitle}{Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment}
+      \field{title}{{The DESY II test beam facility}}
+      \field{volume}{922}
+      \field{year}{2019}
+      \field{pages}{265\bibrangedash 286}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1016/j.nima.2018.11.133
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0168900218317868
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0168900218317868
+      \endverb
+      \keyw{DESY,Test beam,Infrastructure}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

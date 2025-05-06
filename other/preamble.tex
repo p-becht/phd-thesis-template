@@ -1,0 +1,101 @@
+%!TeX root = ../main.tex
+%
+% Input
+%\usepackage[utf8]{inputenc} % utf8 input encoding
+%\usepackage[T1]{fontenc}		% latin, central European letters [T1]
+
+% Language
+\usepackage{csquotes}
+\usepackage[ngerman, main=english]{babel}	% input language
+	
+% Line spacing
+\usepackage{setspace}
+  \setstretch{1.05}
+
+% Font
+\usepackage{libertine}
+%\renewcommand*\familydefault{\sfdefault}
+\usepackage{url}
+\usepackage{caption}
+	\captionsetup{
+		labelfont=bf,
+		labelsep=quad,
+		font=small	,							    % font tiny bit smaller than in text
+		justification=raggedright,
+		singlelinecheck=false,
+		format=hang
+		}
+	%\captionsetup[supertabular]{skip=-4pt}	% distances for supertabular
+\usepackage[normalem]{ulem}		  % underline text
+\usepackage{calc}							  % calculate width
+	
+% Tables
+\usepackage{booktabs}						% nicer tables
+\usepackage{tabularx}           % simple tables
+\usepackage{array}							% formatting for tables
+\usepackage{supertabular}				% tables over more than one page
+
+% Maths
+\usepackage{amsmath, mathtools}
+	\numberwithin{equation}{chapter}		% enumerate equations within section
+\usepackage[separate-uncertainty=true]{siunitx}	
+	\DeclareSIQualifier\eq{eq}
+	\DeclareSIUnit[number-unit-product={}]\neutron{\textit{n}}
+	\DeclareSIUnit[number-unit-product={}]\electron{\textit{e}}
+	\DeclareSIUnit[number-unit-product={}]\radl{X_0}
+	\DeclareSIUnit[number-unit-product={}]\perradl{\frac{X}{X_0}}
+	\DeclareSIUnit[number-unit-product={}]\inlperradl{\frac{X}{X_0}}
+	\DeclareSIUnit[number-unit-product={}]\c{c}
+\usepackage{mathrsfs}						      % \mathscr
+\usepackage{wasysym}						      % permille char
+
+% External graphics
+\usepackage{graphicx}
+\usepackage{epstopdf}
+%\usepackage{float}							      % position specifier H
+\usepackage{placeins}                 % \begin{figure}[htbp] (KOMA compatible)
+\usepackage{tocbasic}
+\DeclareTOCStyleEntry[dynnumwidth]{default}{figure}
+\DeclareTOCStyleEntry[dynnumwidth]{default}{table}
+\usepackage{subcaption}
+
+% Internal graphics
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{environ}
+\makeatletter
+    \newsavebox{\measure@tikzpicture}
+        \NewEnviron{scaletikzpicturetowidth}[1]{%
+            \def\tikz@width{#1}%
+            \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+            \BODY
+            \end{lrbox}%
+            \pgfmathparse{#1/\wd\measure@tikzpicture}%
+            \edef\tikzscale{\pgfmathresult}%
+            \BODY
+        }
+\makeatother
+\usetikzlibrary{math}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings}
+\usetikzlibrary{patterns, arrows, arrows.meta}
+\usepackage{adjustbox}
+
+% Bibliography
+\addbibresource{./other/references.bib}
+
+% Own commands
+\newcommand\sub[1]{_{\mathrm{#1}}}					                      % non-italic indices
+\newcommand\R{\textsuperscript{\textregistered}}	                      % Registered symbol
+\newcommand*{\unc}[3]{$\num{#1}\times\num{#3}\pm\num{#2}\times\num{#3}$}  % uncertainty
+% \def\neuerBefehl{Zweck des Befehls}
+% \newcommand{\neuerBefehl}[AnzahlOptionen][default]{Zweck des Befehls}
+
+% Blindtext and line numbers
+\usepackage{blindtext}
+%\usepackage{lineno}
+%\linenumbers
+
+% Microtype
+\usepackage{microtype}

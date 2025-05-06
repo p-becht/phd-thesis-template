@@ -1,0 +1,36 @@
+\tikzset{
+	beamarrow/.style={
+		decoration={
+			markings,mark=at position 1 with 
+			{\arrow[scale=2,>=stealth]{>}}
+		},postaction={decorate}
+	}
+}
+\tikzset{
+	pics/.cd,
+	vector out/.style={
+		code={
+		\draw[#1, thick] (0,0)  circle (0.15) (45:0.15) -- (225:0.15) (135:0.15) -- (315:0.15);
+		}
+	}
+}
+\tikzset{
+	pics/.cd,
+	vector in/.style={
+		code={
+		\draw[#1, thick] (0,0)  circle (0.15);
+		 \fill[#1] (0,0)  circle (.05);
+		 }
+	}
+}
+\tikzset{
+	global scale/.style={
+		scale=#1,
+		every node/.style={scale=#1}
+	}
+}
+\def\centerarc[#1] (#2)(#3:#4:#5) % Syntax: [draw options] (center) (initial angle:final angle:radius)
+	 { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+%\def\cyl (#1)(#2:#3) % Syntax: (center) (angle:radius)
+%	 { $(#1)+({#3*cos(#2)},{#3*sin(#2)})$ }
+% DOES NOT WORK!

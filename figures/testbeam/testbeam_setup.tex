@@ -1,0 +1,467 @@
+%!TeX root = ./testbeam_setups.tex
+
+\begin{scaletikzpicturetowidth}{\textwidth}
+    \begin{tikzpicture}[decoration=brace, global scale = \tikzscale]
+			\tikzmath{
+				% general distances
+				\PlaneDistanceScale = 0.75;
+                \DutHeight = 1.5;
+                \DPTSHeight = 0.05 * 10;
+				\BoardHeight = 1.0;
+				\LabelScale=1.5;
+				\BoardHeightmod = \BoardHeight * 0.85;
+                			\BoardHeightDPTS = \BoardHeight + 0.5 * \DutHeight - 0.5 * \DPTSHeight;
+				\BoardHeightmodDPTS = \BoardHeightDPTS * 0.85;
+				\BoardWidth = 0.04;
+				\ChipWidth = 0.5mm;
+				\CoordinateDist = 0.3;
+				\ArrWidth = 1.75mm;
+				\ArrLength = \ArrWidth * 1.2;
+				\CoordinateLength = 1;
+				\VecRad = 0.15;
+				\SciFullHeight = 2;
+				\SciHoleHeight = \DPTSHeight;
+				\SciWidth = \BoardWidth * 3;
+				\SciHeight = \SciFullHeight / 2 - \SciHoleHeight / 2;
+				%
+				% distances between planes
+				\z01 = 2.5 * \PlaneDistanceScale;
+				\z12 = 2.5 * \PlaneDistanceScale;
+				\z23 = 3.0 * \PlaneDistanceScale;
+				\z34 = 3.0 * \PlaneDistanceScale;
+				\z45 = 4.0 * \PlaneDistanceScale;
+				\z56 = 2.5 * \PlaneDistanceScale;
+				\z67 = 2.5 * \PlaneDistanceScale;
+				\zSci = 2.5 * \PlaneDistanceScale;
+				%
+				\px0 = 0;
+				\pylow = \DutHeight / -2;
+				\pyup = \DutHeight / 2;
+                			\pylowdpts = \DPTSHeight / -2;
+				\pyupdpts = \DPTSHeight / 2;
+				\pylowsci = \SciHoleHeight / -2;
+				\pyupsci = \SciHoleHeight / 2;
+				%
+				\px1 = \px0 + \z01;
+				\px2 = \px1 + \z12;
+				\px3 = \px2 + \z23;
+				\px4 = \px3 + \z34;
+				\px5 = \px4 + \z45;
+				\px6 = \px5 + \z56;
+				\px7 = \px6 + \z67;
+				%
+				\pxS1 = \px0-\zSci-\zSci;
+				\pxS2 = \px0-\zSci;
+				\pxS3 = \px7+\zSci-\SciWidth;
+			}
+		
+			% coordinate calculation
+			\coordinate (p0lowUL) at (\px0,\pylow);
+			\coordinate (p0upBL) at (\px0,\pyup);
+			\coordinate (p1lowUL) at (\px1,\pylow);
+			\coordinate (p1upBL) at (\px1,\pyup);
+			\coordinate (p2lowUL) at (\px2,\pylow);
+			\coordinate (p2upBL) at (\px2,\pyup);
+			
+          			\coordinate (p3lowUL) at (\px3,\pylowdpts);
+			\coordinate (p3upBL) at (\px3,\pyupdpts);
+		           \coordinate (p4lowUL) at (\px4,\pylowdpts);
+			\coordinate (p4upBL) at (\px4,\pyupdpts);
+			\coordinate (p3lowULref) at (\px3,\pylow);
+			\coordinate (p3upBLref) at (\px3,\pyup);
+		           \coordinate (p4lowULref) at (\px4,\pylow);
+			\coordinate (p4upBLref) at (\px4,\pyup);
+			
+			\coordinate (p5lowUL) at (\px5,\pylow);
+			\coordinate (p5upBL) at (\px5,\pyup);
+			\coordinate (p6lowUL) at (\px6,\pylow);
+			\coordinate (p6upBL) at (\px6,\pyup);
+			\coordinate (p7lowUL) at (\px7,\pylow);
+			\coordinate (p7upBL) at (\px7,\pyup);
+			
+			\coordinate (s1lowUL) at (\pxS1,\pylowsci);
+			\coordinate (s1upBL) at (\pxS1,\pyupsci);
+			\coordinate (s2lowUL) at (\pxS2,\pylowsci);
+			\coordinate (s2upBL) at (\pxS2,\pyupsci);
+			\coordinate (s3lowUL) at (\pxS3,\pylowsci);
+			\coordinate (s3upBL) at (\pxS3,\pyupsci);
+			
+			% beam direction
+			\draw[beamarrow, color=Blue, thick, dashed] ($(\pxS1,0) + (-0.5,0)$)
+				--  ($(\px2 + \BoardWidth,0) $)
+				-- ($(\px3,0) $)
+				-- ($(\px4,0) $)
+				--  ($(\px5,0) $)
+				--  ($(\px6,0) $)
+				--  node[below] {\textcolor{Blue}{direction}}  node[above] {\textcolor{Blue}{Beam}}($(\px7,0) $)
+				-- ($(\pxS3 + \SciWidth + 0.6,0) $);
+				
+			% scintillators
+			% S1
+			\draw[fill=YellowOrange] (s1lowUL)
+				-- ($(s1lowUL) + (\SciWidth,0)$)
+				--  ($(s1lowUL) + (\SciWidth,-1 * \SciHeight)$)
+				-- ($(s1lowUL) + (0,-1 * \SciHeight)$)
+				-- cycle;
+			\draw[fill=YellowOrange] (s1upBL)
+				-- ($(s1upBL) + (\SciWidth,0)$)
+				--  ($(s1upBL) + (\SciWidth,\SciHeight)$)
+				-- ($(s1upBL) + (0,\SciHeight)$)
+				-- cycle;
+				
+			%S2
+			\draw[fill=YellowOrange]  ($(s2lowUL) + (0,-1 * \SciHeight)$)
+				-- ($(s2lowUL) + (\SciWidth,-1 * \SciHeight)$)
+				--  ($(s2upBL) + (\SciWidth,\SciHeight)$)
+				-- ($(s2upBL) + (0,\SciHeight)$)
+				-- cycle;
+				
+			%S3
+			\draw[fill=YellowOrange]  ($(s3lowUL) + (0,-1 * \SciHeight)$)
+				-- ($(s3lowUL) + (\SciWidth,-1 * \SciHeight)$)
+				--  ($(s3upBL) + (\SciWidth,\SciHeight)$)
+				-- ($(s3upBL) + (0,\SciHeight)$)
+				-- cycle;
+			
+			% chips
+			\draw[line width = \ChipWidth, color=BrickRed] ($(p0upBL) + (0,0)$)
+				--node[right, yshift=0.02\textwidth, xshift=-0.005\textwidth] {\large\textcolor{BrickRed}{ALPIDE}}
+				($(p0upBL) + (0,-1 * \DutHeight)$);
+			\draw[line width = \ChipWidth, color=BrickRed] ($(p1upBL) + (0,0)$)
+				-- ($(p1upBL) + (0,-1 * \DutHeight)$);
+			\draw[line width = \ChipWidth, color=BrickRed] ($(p2upBL) + (0,0)$)
+				-- ($(p2upBL) + (0,-1 * \DutHeight)$);
+				
+			\draw[line width = \ChipWidth, color=BrickRed] ($(p3upBL) + (0,0)$)
+                			--node[right, yshift=0.02\textwidth] {\large\textcolor{BrickRed}{DPTS}}
+				($(p3upBL) + (0,-1 * \DPTSHeight)$);
+            		\draw[line width = \ChipWidth, color=BrickRed] ($(p4upBL) + (0,0)$)
+				-- ($(p4upBL) + (0,-1 * \DPTSHeight)$);				
+
+			\draw[line width = \ChipWidth, color=BrickRed] ($(p5upBL) + (0,0)$)
+				-- ($(p5upBL) + (0,-1 * \DutHeight)$);
+			\draw[line width = \ChipWidth, color=BrickRed] ($(p6upBL) + (0,0)$)
+				-- ($(p6upBL) + (0,-1 * \DutHeight)$);
+			\draw[line width = \ChipWidth, color=BrickRed] ($(p7upBL) + (0,0)$)
+				-- ($(p7upBL) + (0,-1 * \DutHeight)$);
+				
+			% carrier boards
+			% plane 0
+			\fill[top color = gray!100,bottom color = gray!25, middle color=gray] (p0lowUL)
+				-- ($(p0lowUL) + (\BoardWidth,0)$)
+				--  ($(p0lowUL) + (\BoardWidth,-1 * \BoardHeight)$)
+				-- ($(p0lowUL) + (0,-1 * \BoardHeight)$)
+				-- cycle; % fading colour rectangle low
+			\draw [] (p0lowUL)
+				edge [densely dotted]  ($(p0lowUL) + (0,-1 * \BoardHeight)$); % left side low
+			\draw [] ($(p0lowUL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p0lowUL) + (\BoardWidth,-1 * \BoardHeight)$); % right side low
+			\draw [] ($(p0lowUL) + (0,-1 * \BoardHeightmod)$)
+				-- (p0lowUL)
+				-- ($(p0lowUL) + (\BoardWidth,0)$)
+				-- ($(p0lowUL) + (\BoardWidth,-1 * \BoardHeightmod)$); % top side low
+
+			\fill[bottom color = gray!100,top color = gray!25, middle color=gray] (p0upBL)
+				-- ($(p0upBL) + (\BoardWidth,0)$)
+				--  ($(p0upBL) + (\BoardWidth,\BoardHeight)$)
+				-- ($(p0upBL) + (0,\BoardHeight)$)
+				-- cycle; % fading colour rectangle up
+			\draw [] (p0upBL)
+				edge [densely dotted]  ($(p0upBL) + (0,\BoardHeight)$); % left side up
+			\draw [] ($(p0upBL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p0upBL) + (\BoardWidth,\BoardHeight)$); % right side up
+			\draw [] ($(p0upBL) + (0,\BoardHeightmod)$)
+				-- (p0upBL)
+				-- ($(p0upBL) + (\BoardWidth,0)$)
+				-- ($(p0upBL) + (\BoardWidth, \BoardHeightmod)$); % top side up
+
+			% plane 1
+			\fill[top color = gray!100,bottom color = gray!25, middle color=gray] (p1lowUL)
+				-- ($(p1lowUL) + (\BoardWidth,0)$)
+				--  ($(p1lowUL) + (\BoardWidth,-1 * \BoardHeight)$)
+				-- ($(p1lowUL) + (0,-1 * \BoardHeight)$)
+				-- cycle; % fading colour rectangle low
+			\draw [] (p1lowUL)
+				edge [densely dotted]  ($(p1lowUL) + (0,-1 * \BoardHeight)$); % left side low
+			\draw [] ($(p1lowUL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p1lowUL) + (\BoardWidth,-1 * \BoardHeight)$); % right side low
+			\draw [] ($(p1lowUL) + (0,-1 * \BoardHeightmod)$)
+				-- (p1lowUL)
+				-- ($(p1lowUL) + (\BoardWidth,0)$)
+				-- ($(p1lowUL) + (\BoardWidth,-1 * \BoardHeightmod)$); % top side low
+
+			\fill[bottom color = gray!100,top color = gray!25, middle color=gray] (p1upBL)
+				-- ($(p1upBL) + (\BoardWidth,0)$)
+				--  ($(p1upBL) + (\BoardWidth,\BoardHeight)$)
+				-- ($(p1upBL) + (0,\BoardHeight)$)
+				-- cycle; % fading colour rectangle up
+			\draw [] (p1upBL)
+				edge [densely dotted]  ($(p1upBL) + (0,\BoardHeight)$); % left side up
+			\draw [] ($(p1upBL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p1upBL) + (\BoardWidth,\BoardHeight)$); % right side up
+			\draw [] ($(p1upBL) + (0,\BoardHeightmod)$)
+				-- (p1upBL)
+				-- ($(p1upBL) + (\BoardWidth,0)$)
+				-- ($(p1upBL) + (\BoardWidth, \BoardHeightmod)$); % top side up
+				
+			% plane 2
+			\fill[top color = gray!100,bottom color = gray!25, middle color=gray] (p2lowUL)
+				-- ($(p2lowUL) + (\BoardWidth,0)$)
+				--  ($(p2lowUL) + (\BoardWidth,-1 * \BoardHeight)$)
+				-- ($(p2lowUL) + (0,-1 * \BoardHeight)$)
+				-- cycle; % fading colour rectangle low
+			\draw [] (p2lowUL)
+				edge [densely dotted]  ($(p2lowUL) + (0,-1 * \BoardHeight)$); % left side low
+			\draw [] ($(p2lowUL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p2lowUL) + (\BoardWidth,-1 * \BoardHeight)$); % right side low
+			\draw [] ($(p2lowUL) + (0,-1 * \BoardHeightmod)$)
+				-- (p2lowUL)
+				-- ($(p2lowUL) + (\BoardWidth,0)$)
+				-- ($(p2lowUL) + (\BoardWidth,-1 * \BoardHeightmod)$); % top side low
+
+			\fill[bottom color = gray!100,top color = gray!25, middle color=gray] (p2upBL)
+				-- ($(p2upBL) + (\BoardWidth,0)$)
+				--  ($(p2upBL) + (\BoardWidth,\BoardHeight)$)
+				-- ($(p2upBL) + (0,\BoardHeight)$)
+				-- cycle; % fading colour rectangle up
+			\draw [] (p2upBL)
+				edge [densely dotted]  ($(p2upBL) + (0,\BoardHeight)$); % left side up
+			\draw [] ($(p2upBL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p2upBL) + (\BoardWidth,\BoardHeight)$); % right side up
+			\draw [] ($(p2upBL) + (0,\BoardHeightmod)$)
+				-- (p2upBL)
+				-- ($(p2upBL) + (\BoardWidth,0)$)
+				-- ($(p2upBL) + (\BoardWidth, \BoardHeightmod)$); % top side up
+
+			% plane 3
+			\fill[top color = gray!100,bottom color = gray!25, middle color=gray] (p3lowUL)
+				-- ($(p3lowUL) + (\BoardWidth,0)$)
+				--  ($(p3lowUL) + (\BoardWidth,-1 * \BoardHeightDPTS)$)
+				-- ($(p3lowUL) + (0,-1 * \BoardHeightDPTS)$)
+				-- cycle; % fading colour rectangle low
+			\draw [] (p3lowUL)
+				edge [densely dotted]  ($(p3lowUL) + (0,-1 * \BoardHeightDPTS)$); % left side low
+			\draw [] ($(p3lowUL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p3lowUL) + (\BoardWidth,-1 * \BoardHeightDPTS)$); % right side low
+			\draw [] ($(p3lowUL) + (0,-1 * \BoardHeightmodDPTS)$)
+				-- (p3lowUL)
+				-- ($(p3lowUL) + (\BoardWidth,0)$)
+				-- ($(p3lowUL) + (\BoardWidth,-1 * \BoardHeightmodDPTS)$); % top side low
+
+			\fill[bottom color = gray!100,top color = gray!25, middle color=gray] (p3upBL)
+				-- ($(p3upBL) + (\BoardWidth,0)$)
+				--  ($(p3upBL) + (\BoardWidth,\BoardHeightDPTS)$)
+				-- ($(p3upBL) + (0,\BoardHeightDPTS)$)
+				-- cycle; % fading colour rectangle up
+			\draw [] (p3upBL)
+				edge [densely dotted]  ($(p3upBL) + (0,\BoardHeightDPTS)$); % left side up
+			\draw [] ($(p3upBL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p3upBL) + (\BoardWidth,\BoardHeightDPTS)$); % right side up
+			\draw [] ($(p3upBL) + (0,\BoardHeightmodDPTS)$)
+				-- (p3upBL)
+				-- ($(p3upBL) + (\BoardWidth,0)$)
+				-- ($(p3upBL) + (\BoardWidth, \BoardHeightmodDPTS)$); % top side up
+
+			% plane 4
+			\fill[top color = gray!100,bottom color = gray!25, middle color=gray] (p4lowUL)
+				-- ($(p4lowUL) + (\BoardWidth,0)$)
+				--  ($(p4lowUL) + (\BoardWidth,-1 * \BoardHeightDPTS)$)
+				-- ($(p4lowUL) + (0,-1 * \BoardHeightDPTS)$)
+				-- cycle; % fading colour rectangle low
+			\draw [] (p4lowUL)
+				edge [densely dotted]  ($(p4lowUL) + (0,-1 * \BoardHeightDPTS)$); % left side low
+			\draw [] ($(p4lowUL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p4lowUL) + (\BoardWidth,-1 * \BoardHeightDPTS)$); % right side low
+			\draw [] ($(p4lowUL) + (0,-1 * \BoardHeightmodDPTS)$)
+				-- (p4lowUL)
+				-- ($(p4lowUL) + (\BoardWidth,0)$)
+				-- ($(p4lowUL) + (\BoardWidth,-1 * \BoardHeightmodDPTS)$); % top side low
+
+			\fill[bottom color = gray!100,top color = gray!25, middle color=gray] (p4upBL)
+				-- ($(p4upBL) + (\BoardWidth,0)$)
+				--  ($(p4upBL) + (\BoardWidth,\BoardHeightDPTS)$)
+				-- ($(p4upBL) + (0,\BoardHeightDPTS)$)
+				-- cycle; % fading colour rectangle up
+			\draw [] (p4upBL)
+				edge [densely dotted]  ($(p4upBL) + (0,\BoardHeightDPTS)$); % left side up
+			\draw [] ($(p4upBL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p4upBL) + (\BoardWidth,\BoardHeightDPTS)$); % right side up
+			\draw [] ($(p4upBL) + (0,\BoardHeightmodDPTS)$)
+				-- (p4upBL)
+				-- ($(p4upBL) + (\BoardWidth,0)$)
+				-- ($(p4upBL) + (\BoardWidth, \BoardHeightmodDPTS)$); % top side up
+
+			% plane 5
+			\fill[top color = gray!100,bottom color = gray!25, middle color=gray] (p5lowUL)
+				-- ($(p5lowUL) + (\BoardWidth,0)$)
+				--  ($(p5lowUL) + (\BoardWidth,-1 * \BoardHeight)$)
+				-- ($(p5lowUL) + (0,-1 * \BoardHeight)$)
+				-- cycle; % fading colour rectangle low
+			\draw [] (p5lowUL)
+				edge [densely dotted]  ($(p5lowUL) + (0,-1 * \BoardHeight)$); % left side low
+			\draw [] ($(p5lowUL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p5lowUL) + (\BoardWidth,-1 * \BoardHeight)$); % right side low
+			\draw [] ($(p5lowUL) + (0,-1 * \BoardHeightmod)$)
+				-- (p5lowUL)
+				-- ($(p5lowUL) + (\BoardWidth,0)$)
+				-- ($(p5lowUL) + (\BoardWidth,-1 * \BoardHeightmod)$); % top side low
+
+			\fill[bottom color = gray!100,top color = gray!25, middle color=gray] (p5upBL)
+				-- ($(p5upBL) + (\BoardWidth,0)$)
+				--  ($(p5upBL) + (\BoardWidth,\BoardHeight)$)
+				-- ($(p5upBL) + (0,\BoardHeight)$)
+				-- cycle; % fading colour rectangle up
+			\draw [] (p5upBL)
+				edge [densely dotted]  ($(p5upBL) + (0,\BoardHeight)$); % left side up
+			\draw [] ($(p5upBL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p5upBL) + (\BoardWidth,\BoardHeight)$); % right side up
+			\draw [] ($(p5upBL) + (0,\BoardHeightmod)$)
+				-- (p5upBL)
+				-- ($(p5upBL) + (\BoardWidth,0)$)
+				-- ($(p5upBL) + (\BoardWidth, \BoardHeightmod)$); % top side up
+
+			% plane 6
+			\fill[top color = gray!100,bottom color = gray!25, middle color=gray] (p6lowUL)
+				-- ($(p6lowUL) + (\BoardWidth,0)$)
+				--  ($(p6lowUL) + (\BoardWidth,-1 * \BoardHeight)$)
+				-- ($(p6lowUL) + (0,-1 * \BoardHeight)$)
+				-- cycle; % fading colour rectangle low
+			\draw [] (p6lowUL)
+				edge [densely dotted]  ($(p6lowUL) + (0,-1 * \BoardHeight)$); % left side low
+			\draw [] ($(p6lowUL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p6lowUL) + (\BoardWidth,-1 * \BoardHeight)$); % right side low
+			\draw [] ($(p6lowUL) + (0,-1 * \BoardHeightmod)$)
+				-- (p6lowUL)
+				-- ($(p6lowUL) + (\BoardWidth,0)$)
+				-- ($(p6lowUL) + (\BoardWidth,-1 * \BoardHeightmod)$); % top side low
+
+			\fill[bottom color = gray!100,top color = gray!25, middle color=gray] (p6upBL)
+				-- ($(p6upBL) + (\BoardWidth,0)$)
+				--  ($(p6upBL) + (\BoardWidth,\BoardHeight)$)
+				-- ($(p6upBL) + (0,\BoardHeight)$)
+				-- cycle; % fading colour rectangle up
+			\draw [] (p6upBL)
+				edge [densely dotted]  ($(p6upBL) + (0,\BoardHeight)$); % left side up
+			\draw [] ($(p6upBL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p6upBL) + (\BoardWidth,\BoardHeight)$); % right side up
+			\draw [] ($(p6upBL) + (0,\BoardHeightmod)$)
+				-- (p6upBL)
+				-- ($(p6upBL) + (\BoardWidth,0)$)
+				-- ($(p6upBL) + (\BoardWidth, \BoardHeightmod)$); % top side up
+				
+			% plane 7
+			\fill[top color = gray!100,bottom color = gray!25, middle color=gray] (p7lowUL)
+				-- ($(p7lowUL) + (\BoardWidth,0)$)
+				--  ($(p7lowUL) + (\BoardWidth,-1 * \BoardHeight)$)
+				-- ($(p7lowUL) + (0,-1 * \BoardHeight)$)
+				-- cycle; % fading colour rectangle low
+			\draw [] (p7lowUL)
+				edge [densely dotted]  ($(p7lowUL) + (0,-1 * \BoardHeight)$); % left side low
+			\draw [] ($(p7lowUL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p7lowUL) + (\BoardWidth,-1 * \BoardHeight)$); % right side low
+			\draw [] ($(p7lowUL) + (0,-1 * \BoardHeightmod)$)
+				-- (p7lowUL)
+				-- ($(p7lowUL) + (\BoardWidth,0)$)
+				-- ($(p7lowUL) + (\BoardWidth,-1 * \BoardHeightmod)$); % top side low
+
+			\fill[bottom color = gray!100,top color = gray!25, middle color=gray] (p7upBL)
+				-- ($(p7upBL) + (\BoardWidth,0)$)
+				--  ($(p7upBL) + (\BoardWidth,\BoardHeight)$)
+				-- ($(p7upBL) + (0,\BoardHeight)$)
+				-- cycle; % fading colour rectangle up
+			\draw [] (p7upBL)
+				edge [densely dotted]  ($(p7upBL) + (0,\BoardHeight)$); % left side up
+			\draw [] ($(p7upBL) + (\BoardWidth,0)$)
+				edge [densely dotted]  ($(p7upBL) + (\BoardWidth,\BoardHeight)$); % right side up
+			\draw [] ($(p7upBL) + (0,\BoardHeightmod)$)
+				-- (p7upBL)
+				-- ($(p7upBL) + (\BoardWidth,0)$)
+				-- ($(p7upBL) + (\BoardWidth, \BoardHeightmod)$); % top side up
+
+			% board labels
+			\node[above, align=center] at ($(p0upBL) + (\BoardWidth / 2, \BoardHeight)$) {\large 0};
+			\node[above, align=center] at ($(p1upBL) + (\BoardWidth / 2, \BoardHeight)$) {\large 1};
+			\node[above, align=center] at ($(p2upBL) + (\BoardWidth / 2, \BoardHeight)$) {\large 2};
+			\node[above, align=center] at ($(p3upBLref) + (\BoardWidth / 2, \BoardHeight)$) {\large 3};
+			\node[above, align=center] at ($(p4upBLref) + (\BoardWidth / 2, \BoardHeight)$) {\large 4};
+			\node[above, align=center] at ($(p5upBL) + (\BoardWidth / 2, \BoardHeight)$) {\large 5};
+			\node[above, align=center] at ($(p6upBL) + (\BoardWidth / 2, \BoardHeight)$) {\large 6};
+			\node[above, align=center] at ($(p7upBL) + (\BoardWidth / 2, \BoardHeight)$) {\large 7};
+			
+			\node[above, align=center] at ($(s1upBL) + (\SciWidth / 2, \SciHeight)$) {\large S1};
+			\node[above, align=center] at ($(s2upBL) + (\SciWidth / 2, \SciHeight)$) {\large S2};
+			\node[above, align=center] at ($(s3upBL) + (\SciWidth / 2, \SciHeight)$) {\large S3};
+			
+			%\node[above=0.4ex, align=center] at ($(\pxS1,\pyup) + (\SciWidth / 2,\LabelScale * \BoardHeight)$) {\large Veto};
+			%\node[above=0.4ex, align=center] at ($(\pxS2,\pyup) + (\SciWidth / 2,\LabelScale * \BoardHeight)$) {\large Scintillator};
+			\node[above=0.4ex, align=center] at ($(\pxS2,\pyup) + (\SciWidth / 2 - 1 * \zSci/2,\LabelScale * \BoardHeight)$) {\large Scintillators};
+			\node[above=0.4ex, align=center] at ($(\pxS3,\pyup) + (\SciWidth / 2,\LabelScale * \BoardHeight)$) {\large Scintillator};
+			
+			\draw[decorate, yshift=-4ex]  ($(p0upBL) + (0,\LabelScale * \BoardHeight)$)
+			-- node[above=0.4ex] {\large Reference arm} ($(p2upBL) + (\BoardWidth,\LabelScale * \BoardHeight)$);
+			\draw[decorate, yshift=-4ex]  ($(p5upBL) + (0,\LabelScale * \BoardHeight)$)
+			-- node[above=0.4ex] {\large Reference arm} ($(p7upBL) + (\BoardWidth,\LabelScale * \BoardHeight)$);
+			
+            		\node[above=0.4ex, align=center] at ($(p3upBLref) + (\BoardWidth / 2,\LabelScale * \BoardHeight)$) {\large DPTS 1};
+			\node[above=0.4ex, align=center] at ($(p4upBLref) + (\BoardWidth / 2,\LabelScale * \BoardHeight)$) {\large DPTS 2};
+			
+           			 % plane distance labels
+			\draw[stealth-stealth]  ($(p0lowUL) + (\BoardWidth / 2,-1.1 * \BoardHeight)$)
+			-- node[above] {\SI{25}{\milli\metre}} ($(p1lowUL) + (\BoardWidth / 2,-1.1 * \BoardHeight)$);
+			\draw[stealth-stealth]  ($(p1lowUL) + (\BoardWidth / 2,-1.1 * \BoardHeight)$)
+			-- node[above] {\SI{25}{\milli\metre}} ($(p2lowUL) + (\BoardWidth / 2,-1.1 * \BoardHeight)$);
+			\draw[stealth-stealth]  ($(p2lowUL) + (\BoardWidth / 2,-1.1 * \BoardHeight)$)
+			-- node[above] {$d_1$} ($(p3lowULref) + (\BoardWidth / 2,-1.1 * \BoardHeight)$);
+			\draw[stealth-stealth]  ($(p3lowULref) + (\BoardWidth / 2,-1.1 * \BoardHeight)$)
+			-- node[above] {$d_2$} ($(p4lowULref) + (\BoardWidth / 2,-1.1 * \BoardHeight)$);
+			\draw[stealth-stealth]  ($(p4lowULref) + (\BoardWidth / 2,-1.1 * \BoardHeight)$)
+			-- node[above] {$d_3$} ($(p5lowUL) + (\BoardWidth / 2,-1.1 * \BoardHeight)$);
+			\draw[stealth-stealth]  ($(p5lowUL) + (\BoardWidth / 2,-1.1 * \BoardHeight)$)
+			-- node[above] {\SI{25}{\milli\metre}} ($(p6lowUL) + (\BoardWidth / 2,-1.1 * \BoardHeight)$);
+			\draw[stealth-stealth]  ($(p6lowUL) + (\BoardWidth / 2,-1.1 * \BoardHeight)$)
+			-- node[above] {\SI{25}{\milli\metre}} ($(p7lowUL) + (\BoardWidth / 2,-1.1 * \BoardHeight)$);
+			
+			% x direction (local coordinates)
+			%\path  ($(p2upBL) + (\CoordinateDist,-1 * \DutHeight)$)
+			%	pic {vector out};
+			%\node[right, align=center] at  ($(p2upBL) + (\CoordinateDist + \VecRad,-1 * \DutHeight)$) {\large Column};
+			% y direction (local coordinates)
+			%\draw[densely dotted, thick] ($(p2upBL) + (\CoordinateDist,-1 * \DutHeight)$)
+			%	-- ($(p2upBL) + (\CoordinateDist,-1 * \DutHeight + \VecRad)$);
+			%\draw[-{Latex[width=\ArrWidth, length=\ArrLength]}, thick] ($(p2upBL) + (\CoordinateDist,-1 * \DutHeight + \VecRad)$)
+			%	-- ($(p2upBL) + (\CoordinateDist,0)$);
+			%\node[right, align=center] at   ($(p2upBL) + (\CoordinateDist + \VecRad,0)$) {\large Row};
+			
+			% x direction (global coordinates)
+			\path  ($(p4upBLref) + (\CoordinateDist,-1 * \DutHeight / 2)$)
+				pic {vector out};
+			\node[below, align=center, xshift = 1ex] at  ($(p4upBLref) + (\CoordinateDist,-1 * \DutHeight / 2 - \VecRad)$) {\large $x$};
+			% y direction (global coordinates)
+			\draw[densely dotted, thick] ($(p4upBLref) + (\CoordinateDist,-1 * \DutHeight / 2)$)
+				-- ($(p4upBLref) + (\CoordinateDist,-1 * \DutHeight / 2 + \VecRad)$);
+			\draw[-{Latex[width=\ArrWidth, length=\ArrLength]}, thick] ($(p4upBLref) + (\CoordinateDist,-1 * \DutHeight / 2 + \VecRad)$)
+				-- ($(p4upBLref) + (\CoordinateDist,-1 * \DutHeight / 2 + \VecRad + \CoordinateLength)$);
+			\node[above, align=center, xshift = 1ex] at  ($(p4upBLref) + (\CoordinateDist,-1 * \DutHeight / 2 + \VecRad + \CoordinateLength)$) {\large $y$};
+			% z direction (global coordinates)
+			\draw[densely dotted, thick] ($(p4upBLref) + (\CoordinateDist,-1 * \DutHeight / 2)$)
+				-- ($(p4upBLref) + (\CoordinateDist + \VecRad,-1 * \DutHeight / 2)$);
+			\draw[-{Latex[width=\ArrWidth, length=\ArrLength]}, thick] ($(p4upBLref) + (\CoordinateDist + \VecRad,-1 * \DutHeight / 2)$)
+				-- ($(p4upBLref) + (\CoordinateDist + \CoordinateLength,-1 * \DutHeight / 2)$);
+			\node[above, align=center] at ($(p4upBLref) + (\CoordinateDist + \CoordinateLength,-1 * \DutHeight / 2)$) {\large $z$};
+			
+			% absolute global z-axis
+			%\draw[-{Latex[width=\ArrWidth, length=\ArrLength]}, thick] ($(p0lowUL) + (-0.5,-1.4 * \BoardHeight)$)
+			%	-- ($(p7lowUL) + (0.5,-1.4 * \BoardHeight)$);
+			%\node[above, align=center] at  ($(p7lowUL) + (0.5,-1.4 * \BoardHeight)$) {\large $z$};
+			
+			% -107.5mm, -82.5mm, -57.5mm, -1.43231042mm, 17mm, 41.5mm, 64.5mm
+			%\draw ($(p0lowUL) + (0,-1.3 * \BoardHeight)$) -- ($(p0lowUL) + (0,-1.5 * \BoardHeight)$) node[below=4pt] {\SI{-110}{\mm}};
+			%\draw ($(p1lowUL) + (0,-1.3 * \BoardHeight)$) -- ($(p1lowUL) + (0,-1.5 * \BoardHeight)$) node[below=4pt] {\SI{-85}{\mm}};
+			%\draw ($(p2lowUL) + (0,-1.3 * \BoardHeight)$) -- ($(p2lowUL) + (0,-1.5 * \BoardHeight)$) node[below=4pt] {\SI{-60}{\mm}};
+			%\draw ($(p3lowULref) + (0,-1.3 * \BoardHeight)$) -- ($(p3lowULref) + (0,-1.5 * \BoardHeight)$) node[below=4pt] {\SI{-30}{\mm}};
+			%\draw ($(p4lowULref) + (0,-1.3 * \BoardHeight)$) -- ($(p4lowULref) + (0,-1.5 * \BoardHeight)$) node[below=4pt] {\SI{0}{\mm}};
+			%\draw ($(p5lowUL) + (0,-1.3 * \BoardHeight)$) -- ($(p5lowUL) + (0,-1.5 * \BoardHeight)$) node[below=4pt] {\SI{40}{\mm}};
+			%\draw ($(p6lowUL) + (0,-1.3 * \BoardHeight)$) -- ($(p6lowUL) + (0,-1.5 * \BoardHeight)$) node[below=4pt] {\SI{65}{\mm}};
+			%\draw ($(p7lowUL) + (0,-1.3 * \BoardHeight)$) -- ($(p7lowUL) + (0,-1.5 * \BoardHeight)$) node[below=4pt] {\SI{90}{\mm}};
+	\end{tikzpicture}
+\end{scaletikzpicturetowidth}

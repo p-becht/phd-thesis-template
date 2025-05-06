@@ -1,0 +1,37 @@
+%!TeX root = ../main.tex
+%
+\chapter{Experimental methods for sensor characterisation and calibration}
+\label{chap:experimental-methods}
+%
+In order to verify the required performance specifications of a newly developed sensor~(prototype), specific measurement campaigns need to be carried out. 
+Targeting different aspects of the sensor functionality, these measurements range from basic electrical characterisation of different circuit elements or electrical building blocks of the sensor, as described in chapter~\ref{chap:sensor-prototypes}, to the full-scale evaluation of derived performance quantities. 
+As such, two basic types of measurements requiring different tools and setups can be identified.
+
+On the one hand, there are \emph{laboratory measurements}, which typically involve relatively simple and flexible setups. 
+Exploring the electrical operational behaviour of the sensor under well-defined environmental conditions and input parameters, these tests are essential in order to determine the so-called \emph{dynamic range}. 
+
+The dynamic range of silicon pixel sensors and especially \gls{maps} is commonly defined as the ratio between the largest and smallest reliably, detectable signal. 
+Here, the lower limit of the signal amplitude is mainly given by the noise performance of the sensor, while the upper limit is related to limitations in the front-end circuitry. 
+In order to be reliably registered, the signal amplitude must be sufficiently larger when compared to the typical signal amplitude caused by noise, i.e. the noise level. 
+This implies a signal selection criterion based on the \gls{snr}. 
+In the context of silicon pixel sensors, the signal is often discriminated against a chosen, adjustable threshold value, which effectively makes this the lower limit of the signal amplitude to be considered in the dynamic range. 
+The upper limit of the reliably, detectable signal amplitude is typically given by the saturation of the front-end amplifier output. 
+Apart from this, other limitations such as charge sharing and time-walk effects may also be considered when defining the upper bound of the dynamic range. 
+Furthermore, distortions in the pulse shape of the signal potentially leading to non-linear timing output or hit occupancy effects such as \emph{pile-up} of different signals can be taken into account \textcolor{red}{reference}. 
+Such effects become particularly relevant in high-rate environments where overlapping events could cause a loss of information. 
+
+As outlined in chapter~\ref{chap:sensor-prototypes} the \emph{working point} of a sensor is determined by a set of externally supplied bias currents and voltages. 
+In the scope of this work and the considered \gls{maps} prototypes, the dynamic range can also be understood as a range of working points corresponding to stable operating conditions. 
+Laboratory measurements provide the means of determining this parameter space of stable operating conditions, which serve as the basis for more elaborate measurements aiming at the final sensor calibration and thus enabling physics measurements. 
+Here, stable operating conditions refer to settings for which the sensor maintains a reliable and expected signal detection given a known stimulus, while exhibiting a reasonably low noise occupancy and consistent behaviour considering signal shape and pixel resetting. 
+
+On the other hand, there are \emph{beam tests}, which utilise beams of charged particles\footnote{There are also beam lines for electrically neutral particles (photons, neutrons, etc.), which are not relevant for this work.} provided by an accelerator facility. 
+As such, this kind of measurement aims at studying the full detection performance under conditions that closely resemble the intended use case of the sensor in the final detector system. 
+By choosing external parameters like the particle type and momentum, different application scenarios can be emulated in a controlled, well-known experimental environment. 
+Therefore, beam tests provide valuable data for sensor prototypes and electrical test structures, which is used to identify and improve deficiencies in the chip design leading to the next iteration of the sensor until all requirements are met in the final version. 
+This often makes beam tests the last validation step before large-scale sensor production, assembly and integration into a larger detector system. 
+
+In the following sections, the main types of laboratory measurements are presented in the context of the two tested sensor prototypes, \gls{dpts} and \gls{babymoss}. 
+This includes a description of the experimental setups and tools, the objectives and procedures of the measurements, as well as a summary and discussion of the main characterisation results. 
+In addition, a calibration method for decoding the hit information from the \gls{dpts} is introduced. 
+Finally, the general event reconstruction method is outlined in the context of the beam test results obtained for the \gls{dpts}.
